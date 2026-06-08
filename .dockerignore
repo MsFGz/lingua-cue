@@ -1,0 +1,26 @@
+# Git
+.git
+.gitignore
+
+# Python
+.venv-asr
+__pycache__
+*.pyc
+
+# Node
+node_modules
+dist
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# WorkBuddy
+.workbuddy
+
+# Whisper models (too large, will be downloaded at runtime if needed)
+vendor/whisper.cpp/models/*.bin

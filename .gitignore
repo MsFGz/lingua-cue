@@ -1,0 +1,9 @@
+.venv-asr/
+vendor/
+node_modules/
+dist/
+.workbuddy/
+.pycache/
+__pycache__/
+*.log
+.DS_Store

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lingua Cue</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div>
+            <p class="eyebrow">Coffee Chat Copilot</p>
+            <h1>Lingua Cue</h1>
+          </div>
+        </div>
+        <div class="session-strip" aria-label="会话状态">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">待机</span>
+          <span class="divider"></span>
+          <span id="latencyReadout">0 ms</span>
+          <span class="divider"></span>
+          <span id="confidenceReadout">0%</span>
+          <span class="divider"></span>
+          <span id="engineReadout">Web Speech</span>
+        </div>
+      </header>
+
+      <section class="control-band" aria-label="会话控制">
+        <button class="primary-action" id="listenButton" type="button">
+          <span class="button-icon" aria-hidden="true">●</span>
+          <span>开始聆听</span>
+        </button>
+        <button class="icon-action" id="pauseButton" type="button" aria-label="暂停" title="暂停" disabled>
+          <span aria-hidden="true">Ⅱ</span>
+        </button>
+        <button class="icon-action" id="sampleButton" type="button" aria-label="样例" title="样例">
+          <span aria-hidden="true">▶</span>
+        </button>
+        <button class="icon-action" id="clearButton" type="button" aria-label="清空" title="清空">
+          <span aria-hidden="true">×</span>
+        </button>
+        <label class="fallback-toggle">
+          <input id="fallbackToggle" type="checkbox" checked>
+          <span>术语补全</span>
+        </label>
+        <label class="fallback-toggle">
+          <input id="focusModeToggle" type="checkbox" checked>
+          <span>低打扰</span>
+        </label>
+        <div class="mic-meter" aria-label="麦克风输入">
+          <span class="mic-meter-label" id="micLevelText">输入 0%</span>
+          <span class="mic-meter-track" aria-hidden="true">
+            <span id="micLevelBar"></span>
+          </span>
+        </div>
+        <label class="asr-select">
+          <span>识别</span>
+          <select id="asrSelect">
+            <option value="local" selected>本地 SenseVoice</option>
+            <option value="webspeech">浏览器 ASR</option>
+            <option value="openai">OpenAI ASR</option>
+          </select>
+        </label>
+        <div class="session-notice" id="sessionNotice" role="status" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="workspace">
+        <section class="transcript-pane" aria-labelledby="transcriptTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Live Transcript</p>
+              <h2 id="transcriptTitle">对话流</h2>
+            </div>
+            <canvas id="waveCanvas" width="220" height="56" aria-hidden="true"></canvas>
+          </div>
+          <div class="transcript-feed" id="transcriptFeed" aria-live="polite"></div>
+          <form class="manual-entry" id="manualForm">
+            <input id="manualInput" type="text" autocomplete="off" placeholder="输入一句中英混合表达来测试">
+            <button type="submit">分析</button>
+          </form>
+        </section>
+
+        <aside class="cue-pane" aria-labelledby="cueTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Detected Cues</p>
+              <h2 id="cueTitle">术语提示</h2>
+            </div>
+            <span class="count-pill" id="cueCount">0</span>
+          </div>
+          <div class="cue-list" id="cueList"></div>
+        </aside>
+
+        <aside class="detail-pane" aria-labelledby="detailTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Context</p>
+              <h2 id="detailTitle">解释卡片</h2>
+            </div>
+          </div>
+          <div class="detail-scroll">
+            <article class="detail-card" id="detailCard">
+              <p class="empty-title">等待术语出现</p>
+              <p class="empty-copy">实时识别到缩写或短语后，这里会自动判断当前语境，并在有歧义时列出其它场景里的含义。</p>
+            </article>
+
+            <div class="signal-panel" aria-label="处理策略">
+              <div>
+                <span class="metric-label">实时性</span>
+                <strong id="speedMetric">350 ms</strong>
+                <p>增量转写、节流分析、先粗后精。</p>
+              </div>
+              <div>
+                <span class="metric-label">准确性</span>
+                <strong id="accuracyMetric">上下文</strong>
+                <p>行业词库、邻近词证据、歧义降置信。</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <template id="transcriptItemTemplate">
+      <article class="transcript-item">
+        <span class="time-badge"></span>
+        <p></p>
+      </article>
+    </template>
+
+    <template id="cueItemTemplate">
+      <button class="cue-item" type="button">
+        <span class="cue-term"></span>
+        <span class="cue-meaning"></span>
+        <span class="cue-meta"></span>
+      </button>
+    </template>
+
+    <script src="extra-terms.js"></script>
+    <script src="web-extra-terms.js"></script>
+    <script src="fresh-extra-terms.js"></script>
+    <script src="iteration-extra-terms.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

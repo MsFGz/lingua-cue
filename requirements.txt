@@ -1,0 +1,8 @@
+# Python ASR 依赖
+funasr-onnx
+funasr
+modelscope
+huggingface_hub
+torch
+torchaudio
+jieba
