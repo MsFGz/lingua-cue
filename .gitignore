@@ -3,6 +3,10 @@ vendor/
 node_modules/
 dist/
 .workbuddy/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
 .pycache/
 __pycache__/
 *.log

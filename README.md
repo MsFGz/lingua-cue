@@ -54,6 +54,24 @@ node server.mjs
 
 如果你误打开了 `http://localhost:5173` 或直接打开 `index.html`，页面也会自动尝试连接 `http://localhost:5174` 的本地 ASR 代理；前提是 `node server.mjs` 正在运行。
 
+## iOS SwiftUI App
+
+仓库里也包含一个原生 iOS MVP：`ios/LinguaCue/LinguaCue.xcodeproj`。
+
+它实现了 SwiftUI 对话界面、iOS Speech 实时草稿转录、本地术语识别/解释，以及一个打开应用的 App Intent 快捷入口。运行前需要安装完整 Xcode，并把 developer directory 指向 Xcode.app：
+
+```bash
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+open ios/LinguaCue/LinguaCue.xcodeproj
+```
+
+如果修改了 `ios/LinguaCue/project.yml`，可以重新生成工程：
+
+```bash
+cd ios/LinguaCue
+xcodegen generate
+```
+
 如果需要强制回到 whisper.cpp，可以这样启动：
 
 ```bash
