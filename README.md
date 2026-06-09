@@ -7,9 +7,36 @@ sdk: docker
 app_port: 7860
 ---
 
-# Lingua Cue
+<div align="center">
 
-一个面向 coffee chat 的中英混合术语提示原型。它用浏览器的 Web Speech API 做实时转写，在前端本地识别缩写、行业短语和高歧义词，并根据当前场景给出一句话解释、上下文证据和置信度。
+<h1>Lingua Cue</h1>
+
+<p>
+  <img alt="awesome coffee chat" src="https://img.shields.io/badge/awesome-coffee%20chat-ff5aa5?style=for-the-badge">
+  <img alt="status MVP" src="https://img.shields.io/badge/status-MVP-555555?style=for-the-badge">
+  <img alt="ASR SenseVoice Small" src="https://img.shields.io/badge/ASR-SenseVoice%20Small-00897b?style=for-the-badge">
+  <img alt="terms 900 plus" src="https://img.shields.io/badge/terms-900%2B-315cbb?style=for-the-badge">
+  <img alt="stack Node plus Python" src="https://img.shields.io/badge/stack-Node%20%2B%20Python-444444?style=for-the-badge">
+  <a href="https://gazybe-lingua-cue.hf.space">
+    <img alt="Hugging Face Space live" src="https://img.shields.io/badge/HF%20Space-live-f59e0b?style=for-the-badge">
+  </a>
+  <img alt="snapshot 2026-06-09" src="https://img.shields.io/badge/snapshot-2026--06--09-5baa00?style=for-the-badge">
+</p>
+
+<p><strong>中英混合 coffee chat 的实时术语提示器。</strong></p>
+
+<p><em>实时转写 · 缩写解释 · 场景消歧 · 本地免费 ASR · 个人词库</em></p>
+
+<p>
+  <a href="#运行">运行</a> |
+  <a href="#当前语音识别引擎">ASR</a> |
+  <a href="#实时性策略">实时性</a> |
+  <a href="#准确性策略">准确性</a>
+</p>
+
+</div>
+
+一个面向 coffee chat 的中英混合术语提示原型。它用浏览器实时草稿配合本地 SenseVoice 做转写，在前端本地识别缩写、行业短语和高歧义词，并根据当前语境给出一句话解释、上下文证据和置信度。
 
 ## 运行
 
